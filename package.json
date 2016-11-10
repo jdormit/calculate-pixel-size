@@ -1,6 +1,6 @@
 {
-  "name": "calculate-pixel-width",
-  "version": "0.1.0",
+  "name": "calculate-pixel-size",
+  "version": "1.0.0",
   "description": "A small browser library to calculate text size in pixels",
   "main": "index.js",
   "scripts": {

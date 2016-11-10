@@ -4,8 +4,8 @@ module.exports = {
     entry: "./index.js",
     output: {
         path: __dirname + "/docs",
-        filename: "calculate-pixel-width.min.js",
-        library: "calculatePixelWidth",
+        filename: "calculate-pixel-size.min.js",
+        library: "calculatePixelSize",
         libraryTarget: "var"
     },
     plugins: [

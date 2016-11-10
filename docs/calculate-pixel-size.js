@@ -1,4 +1,4 @@
-var calculatePixelWidth =
+var calculatePixelSize =
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -45,7 +45,7 @@ var calculatePixelWidth =
 /* 0 */
 /***/ function(module, exports) {
 
-	var measureText = function(textToMeasure) {
+	var measureText = function(textToMeasure, style) {
 	    var widthCalculator = document.getElementById("size-calculator-width-span");
 	    if (!widthCalculator) {
 	        widthCalculator = document.createElement("span");
@@ -54,21 +54,51 @@ var calculatePixelWidth =
 	        document.body.appendChild(widthCalculator);
 	    }
 	    widthCalculator.innerText = textToMeasure;
+	    if (style) {
+	        var relevantStyles = [
+	            'letterSpacing',
+	            'tabSize',
+	            'wordSpacing',
+	            'font',
+	            'fontFamily',
+	            'fontKerning',
+	            'fontSize',
+	            'fontStretch',
+	            'fontStyle',
+	            'fontVariant',
+	            'fontVariantCaps',
+	            'fontWeight'
+	        ];
+	        Object.keys(style).filter(function(key) {
+	            return relevantStyles.indexOf(key) >= 0;
+	        }).forEach(function(key) {
+	            widthCalculator.style[key] = style[key];
+	        });
+	    }
+	    var size = {};
 	    var boundingRect = widthCalculator.getBoundingClientRect();
 	    if (boundingRect.width) {
-	        return boundingRect.width;
+	        size.width = boundingRect.width;
 	    }
 	    else {
-	        return boundingRect.right - boundingRect.left;
+	        size.width = boundingRect.right - boundingRect.left;
 	    }
+	    if (boundingRect.height) {
+	        size.height = boundingRect.height;
+	    }
+	    else {
+	        size.height = boundingRect.bottom - boundingRect.top;
+	    }
+	    return size;
 	}
 
-	module.exports = function(textToMeasure) {
+	module.exports = function(textToMeasure, options) {
 	    if (!document.body) {
 	        console.error("Document body not found! Make sure to load calculate-pixel-width.js at the end of the <body> tag.");
 	    }
 	    else {
-	        return measureText(textToMeasure);
+	        if (!options) options = {};
+	        return measureText(textToMeasure, options.style);
 	    }
 	};
 
