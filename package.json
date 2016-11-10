@@ -1,0 +1,19 @@
+{
+  "name": "calculate-pixel-width",
+  "version": "0.1.0",
+  "description": "A small browser library to calculate text size in pixels",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "build:min": "webpack --config webpack.min.config.js"
+  },
+  "repository": {
+    "url": "git@github.com:jdormit/size-calculator.git",
+    "type": "git"
+  },
+  "author": "Jeremy Dormitzer <jeremy.dormitzer@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "webpack": "^1.13.3"
+  }
+}
